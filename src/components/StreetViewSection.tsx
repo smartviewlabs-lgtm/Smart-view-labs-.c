@@ -1,6 +1,7 @@
 import React from 'react';
 import { Language } from '../data/translations';
 import { Map, CheckCircle2, Award, Eye, Search, Smartphone, ArrowRight } from 'lucide-react';
+import hotelSuiteImg from '../assets/images/hotel_suite_luxury_360_1794489894032.jpg';
 
 interface StreetViewSectionProps {
   lang: Language;
@@ -111,7 +112,7 @@ export const StreetViewSection: React.FC<StreetViewSectionProps> = ({
               {/* Mock Street View Window */}
               <div className="relative mt-5 aspect-16/10 rounded-2xl overflow-hidden bg-slate-900 shadow-inner">
                 <img
-                  src="/src/assets/images/hotel_suite_luxury_360_1794489894032.jpg"
+                  src={hotelSuiteImg}
                   alt="Street View Preview"
                   className="w-full h-full object-cover"
                 />

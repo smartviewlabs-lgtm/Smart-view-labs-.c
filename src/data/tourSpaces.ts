@@ -1,3 +1,8 @@
+import carShowroomImg from '../assets/images/car_showroom_luxury_360_1794489894599.jpg';
+import hotelSuiteImg from '../assets/images/hotel_suite_luxury_360_1794489894032.jpg';
+import restaurantImg from '../assets/images/restaurant_finedine_360_1794489896391.jpg';
+import banquetHallImg from '../assets/images/banquet_hall_punjab_360_1794489894225.jpg';
+
 export interface Hotspot {
   id: string;
   name: string;
@@ -49,7 +54,7 @@ export const TOUR_SPACES: TourSpace[] = [
     taglineHi: 'ग्राहकों को घर बैठे अपने शोरूम में घुमाएं, हर कार मॉडल की जांच कराएं और टेस्ट ड्राइव बुक करवाएं।',
     description: 'Ultra-high resolution 360° virtual showroom designed for luxury automobile dealerships and high-end retail studios. Features clickable specification popups, custom paint preview links, and direct WhatsApp sales lead routing.',
     descriptionHi: 'लक्जरी ऑटोमोबाइल डीलरशिप और प्रीमियम रिटेल शोरूम के लिए बनाया गया 360° वर्चुअल वॉकथ्रू। ग्राहक सीधे व्हाट्सएप पर टेस्ट ड्राइव व मूल्य की जानकारी ले सकते हैं।',
-    image: '/src/assets/images/car_showroom_luxury_360_1794489894599.jpg',
+    image: carShowroomImg,
     hotspots: [
       {
         id: 'hs-reception',
@@ -127,7 +132,7 @@ export const TOUR_SPACES: TourSpace[] = [
     taglineHi: 'अपने लक्ज़री रूम्स, लॉबी और सुइट्स को 360° में दिखाएं ताकि मेहमान पहले ही मुग्ध हो जाएं।',
     description: 'Immersive 360° walkthrough of a presidential heritage suite and grand royal foyer. Perfect for boutique hotels, resorts, and heritage properties looking to boost direct online room bookings by over 300%.',
     descriptionHi: 'प्रेसिडेंशियल हेरिटेज सुइट और ग्रैंड लॉबी का 360° वर्चुअल टूअर। होटल वेबसाइट्स के लिए डायरेक्ट रूम बुकिंग 3 गुना बढ़ाने में कारगर।',
-    image: '/src/assets/images/hotel_suite_luxury_360_1794489894032.jpg',
+    image: hotelSuiteImg,
     hotspots: [
       {
         id: 'hs-bed',
@@ -205,7 +210,7 @@ export const TOUR_SPACES: TourSpace[] = [
     taglineHi: 'कैंडल-लाइट डाइनिंग एंबियंस, कॉकटेल बार और वीआईपी लाउंज को 360° में दिखाएं।',
     description: 'Bespoke virtual walk-through capturing the mood, acoustic warmth, and architectural craftsmanship of fine dining restaurants. Guests can reserve exact private tables and view signature menus inside the tour.',
     descriptionHi: 'फाइन डाइनिंग रेस्टोरेंट और प्रीमियम बार लाउंज के लिए संवादात्मक 360° टूर। ग्राहक अपनी मनपसंद टेबल देखकर सीधे ऑनलाइन रिजर्व कर सकते हैं।',
-    image: '/src/assets/images/restaurant_finedine_360_1794489896391.jpg',
+    image: restaurantImg,
     hotspots: [
       {
         id: 'hs-bar',
@@ -283,7 +288,7 @@ export const TOUR_SPACES: TourSpace[] = [
     taglineHi: 'शानदार बैंक्वेट हॉल, भव्य स्टेज और डाइनिंग व्यवस्था को 360° में प्रदर्शित करें।',
     description: 'Designed specifically for Punjab destination weddings and royal banquet resorts. Allows NRI families from Canada, UK, and USA to inspect the 1000+ guest seating, mandap stage, and catering layouts without flying in.',
     descriptionHi: 'पंजाब की भव्य शादियों और पैलेस रिजॉर्ट्स के लिए 360° वर्चुअल टूर। एनआरआई परिवार घर बैठे पूरी स्टेज, मंडप और 1000+ लोगों की बैठक व्यवस्था देख सकते हैं।',
-    image: '/src/assets/images/banquet_hall_punjab_360_1794489894225.jpg',
+    image: banquetHallImg,
     hotspots: [
       {
         id: 'hs-stage',
@@ -379,7 +384,7 @@ export const SHOWCASE_CARDS: ShowcaseCard[] = [
     metrics: '+310% Direct Bookings',
     description: 'Allow guests to inspect room acoustics, view from balcony, bathroom marble, and bed comfort before locking dates.',
     descriptionHi: 'मेहमानों को कमरे की बालकनी से नजारा, बाथरूम का मार्बल और बेड कंफर्ट 360° में जांचने दें।',
-    image: '/src/assets/images/hotel_suite_luxury_360_1794489894032.jpg',
+    image: hotelSuiteImg,
     tourId: 'royal-heritage-hotel',
     seoKeywords: ['Hotel 360 virtual tour Chandigarh', 'Luxury hotel 3D walkthrough Amritsar', 'Resort room 360 photography Punjab'],
   },
@@ -394,7 +399,7 @@ export const SHOWCASE_CARDS: ShowcaseCard[] = [
     metrics: '94% Higher Trust Index',
     description: 'Showcase high ceilings, concierge desk, marble floors, and majestic arrival ambiance to corporate travelers.',
     descriptionHi: 'कॉरपोरेट और एनआरआई यात्रियों को अपनी भव्य लॉबी, चेक-इन डेस्क और स्वागत व्यवस्था का शानदार अहसास कराएं।',
-    image: '/src/assets/images/hotel_suite_luxury_360_1794489894032.jpg',
+    image: hotelSuiteImg,
     tourId: 'royal-heritage-hotel',
     seoKeywords: ['Google Street View hotel Punjab', 'Hospitality 360 tours Jalandhar', 'Best hotel photography Ludhiana'],
   },
@@ -409,7 +414,7 @@ export const SHOWCASE_CARDS: ShowcaseCard[] = [
     metrics: '₹45L+ Average Deal Value',
     description: 'Crucial for destination weddings in Punjab. NRI families from UK, Canada, & USA finalize bookings remotely.',
     descriptionHi: 'पंजाब की शादियों के लिए अनिवार्य। कनाडा, यूके और अमेरिका के एनआरआई परिवार दूर बैठकर वेन्यू फाइनल करते हैं।',
-    image: '/src/assets/images/banquet_hall_punjab_360_1794489894225.jpg',
+    image: banquetHallImg,
     tourId: 'grand-banquet-hall',
     seoKeywords: ['Banquet hall 360 tour Ludhiana', 'Wedding resort virtual tour Punjab', 'Marriage palace 360 shoot Amritsar'],
   },
@@ -424,7 +429,7 @@ export const SHOWCASE_CARDS: ShowcaseCard[] = [
     metrics: '+185% Table Reservations',
     description: 'Diners can pick their favorite booth, check bar vibes, and inspect private party areas before heading out.',
     descriptionHi: 'ग्राहक आने से पहले अपना पसंदीदा कोना या बूथ चुन सकते हैं और बार का माहौल देख सकते हैं।',
-    image: '/src/assets/images/restaurant_finedine_360_1794489896391.jpg',
+    image: restaurantImg,
     tourId: 'fine-dine-restaurant',
     seoKeywords: ['Restaurant 360 tour Chandigarh', 'Lounge 360 view Model Town Jalandhar', 'Bar interior 360 Ludhiana'],
   },
@@ -439,7 +444,7 @@ export const SHOWCASE_CARDS: ShowcaseCard[] = [
     metrics: '3.2x More Inquiries',
     description: 'Let buyers inspect car exteriors, luxury jewelry showcases, and furniture studios with interactive hotspots.',
     descriptionHi: 'खरीदारों को कार, गहने और प्रीमियम फर्नीचर के हर विवरण को हॉटस्पॉट के जरिए करीब से देखने दें।',
-    image: '/src/assets/images/car_showroom_luxury_360_1794489894599.jpg',
+    image: carShowroomImg,
     tourId: 'luxury-showroom',
     seoKeywords: ['Car showroom 360 tour Punjab', 'Retail store 360 walkthrough Chandigarh', 'Interactive showroom Ludhiana'],
   },

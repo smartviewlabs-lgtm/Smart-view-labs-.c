@@ -36,7 +36,11 @@ jobs:
         run: npm install
 
       - name: Build application
-        run: npm run build
+        run: |
+          npm run build
+          if [ -f "CNAME" ] && [ ! -f "dist/CNAME" ]; then
+            cp CNAME dist/CNAME
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

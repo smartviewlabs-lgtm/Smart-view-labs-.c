@@ -2,5 +2,7 @@
   "name": "Smart View Labs - 360° Virtual Tours & Marketing Punjab",
   "description": "Punjab's premier 360° Virtual Tour, Google Street View certification, custom website designing, and full-service digital marketing agency serving Chandigarh, Amritsar, Jalandhar, and Ludhiana.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
