@@ -40,8 +40,9 @@ export const ThreeSixtyViewer: React.FC<ThreeSixtyViewerProps> = ({
   const onPointerDownLatRef = useRef<number>(0);
   const lastTouchDistanceRef = useRef<number>(0);
 
-  // Loading state
+  // Loading & WebGL fallback state
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [webglFallback, setWebglFallback] = useState<boolean>(false);
 
   // Initialize Three.js scene
   useEffect(() => {
@@ -57,14 +58,31 @@ export const ThreeSixtyViewer: React.FC<ThreeSixtyViewerProps> = ({
     fovRef.current = 75;
 
     setIsLoading(true);
+    setWebglFallback(false);
+
+    let isDisposed = false;
+    let renderer: THREE.WebGLRenderer;
+    const width = container.clientWidth || 800;
+    const height = container.clientHeight || 500;
+
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: false,
+        powerPreference: 'high-performance',
+      });
+    } catch (err) {
+      console.error('WebGL initialization failed, falling back to panoramic image:', err);
+      setWebglFallback(true);
+      setIsLoading(false);
+      return;
+    }
 
     // 1. Scene
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
     // 2. Camera
-    const width = container.clientWidth || 800;
-    const height = container.clientHeight || 500;
     const camera = new THREE.PerspectiveCamera(fovRef.current, width / height, 1, 1100);
     cameraRef.current = camera;
 
@@ -73,25 +91,33 @@ export const ThreeSixtyViewer: React.FC<ThreeSixtyViewerProps> = ({
     // Invert the geometry on the x-axis so that all faces point inward
     geometry.scale(-1, 1, 1);
 
+    let activeMaterial: THREE.MeshBasicMaterial | null = null;
+    let activeTexture: THREE.Texture | null = null;
+
     // 4. Load equirectangular texture
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load(
       space.image,
       (texture) => {
+        if (isDisposed) {
+          texture.dispose();
+          return;
+        }
         texture.colorSpace = THREE.SRGBColorSpace;
         texture.minFilter = THREE.LinearFilter;
         texture.generateMipmaps = false;
 
-        const material = new THREE.MeshBasicMaterial({ map: texture });
-        const sphereMesh = new THREE.Mesh(geometry, material);
+        activeTexture = texture;
+        activeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+        const sphereMesh = new THREE.Mesh(geometry, activeMaterial);
         scene.add(sphereMesh);
         sphereMeshRef.current = sphereMesh;
         setIsLoading(false);
       },
       undefined,
       (err) => {
+        if (isDisposed) return;
         console.error('Error loading 360 texture:', err);
-        // Fallback procedural canvas texture so viewer still operates
         const canvas = document.createElement('canvas');
         canvas.width = 2048;
         canvas.height = 1024;
@@ -109,16 +135,16 @@ export const ThreeSixtyViewer: React.FC<ThreeSixtyViewerProps> = ({
           ctx.fillText(space.title, 1024, 512);
         }
         const fallbackTex = new THREE.CanvasTexture(canvas);
-        const material = new THREE.MeshBasicMaterial({ map: fallbackTex });
-        const sphereMesh = new THREE.Mesh(geometry, material);
+        activeTexture = fallbackTex;
+        activeMaterial = new THREE.MeshBasicMaterial({ map: fallbackTex });
+        const sphereMesh = new THREE.Mesh(geometry, activeMaterial);
         scene.add(sphereMesh);
         sphereMeshRef.current = sphereMesh;
         setIsLoading(false);
       }
     );
 
-    // 5. Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+    // 5. Configure renderer
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(width, height);
     rendererRef.current = renderer;
@@ -129,17 +155,15 @@ export const ThreeSixtyViewer: React.FC<ThreeSixtyViewerProps> = ({
 
     // 6. Animation / Render loop with smooth auto-rotation
     const render = () => {
-      // Gentle auto-rotation when user is not dragging
+      if (isDisposed) return;
       if (!isUserInteractingRef.current) {
         targetLonRef.current += 0.08;
       }
 
-      // Smooth damping interpolation
       lonRef.current += (targetLonRef.current - lonRef.current) * 0.1;
       latRef.current += (targetLatRef.current - latRef.current) * 0.1;
       fovRef.current += (targetFovRef.current - fovRef.current) * 0.12;
 
-      // Clamp lat to prevent upside-down flip
       latRef.current = Math.max(-85, Math.min(85, latRef.current));
       targetLatRef.current = Math.max(-85, Math.min(85, targetLatRef.current));
 
@@ -166,6 +190,7 @@ export const ThreeSixtyViewer: React.FC<ThreeSixtyViewerProps> = ({
       if (!container || !camera || !renderer) return;
       const w = container.clientWidth;
       const h = container.clientHeight;
+      if (w === 0 || h === 0) return;
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
@@ -174,12 +199,15 @@ export const ThreeSixtyViewer: React.FC<ThreeSixtyViewerProps> = ({
     window.addEventListener('resize', handleResize);
 
     return () => {
+      isDisposed = true;
       if (animFrameIdRef.current) {
         cancelAnimationFrame(animFrameIdRef.current);
       }
       window.removeEventListener('resize', handleResize);
-      renderer.dispose();
+      activeTexture?.dispose();
+      activeMaterial?.dispose();
       geometry.dispose();
+      renderer.dispose();
     };
   }, [space]);
 
@@ -236,19 +264,27 @@ export const ThreeSixtyViewer: React.FC<ThreeSixtyViewerProps> = ({
       className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-slate-950 select-none group border border-slate-200/50 h-[380px] sm:h-[460px] md:h-[540px] lg:h-[600px]"
     >
       {/* Clean Three.js 360 Canvas Container without any overlays or buttons */}
-      <div
-        ref={canvasContainerRef}
-        className="w-full h-full cursor-grab active:cursor-grabbing touch-none"
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onWheel={handleWheel}
-      />
+      {webglFallback ? (
+        <img
+          src={space.image}
+          alt={lang === 'hi' ? space.titleHi : space.title}
+          className="w-full h-full object-cover"
+        />
+      ) : (
+        <div
+          ref={canvasContainerRef}
+          className="w-full h-full cursor-grab active:cursor-grabbing touch-none"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onWheel={handleWheel}
+        />
+      )}
 
       {/* Loading Shimmer while texture loads */}
-      {isLoading && (
+      {isLoading && !webglFallback && (
         <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm flex flex-col items-center justify-center text-white z-30 transition-opacity">
           <div className="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mb-3" />
           <p className="text-sm font-semibold tracking-wide text-amber-200">

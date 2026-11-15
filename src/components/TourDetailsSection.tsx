@@ -1,6 +1,7 @@
 import React from 'react';
 import { TourSpace } from '../data/tourSpaces';
 import { Language, contentData } from '../data/translations';
+import { SITE_CONFIG } from '../data/siteConfig';
 import { CheckCircle, Phone, ArrowRight } from 'lucide-react';
 
 interface TourDetailsSectionProps {
@@ -82,7 +83,7 @@ export const TourDetailsSection: React.FC<TourDetailsSectionProps> = ({
 
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-xs sm:text-sm text-slate-600 font-medium text-center sm:text-left">
-                On-site shoot crews stationed in Chandigarh, Amritsar, Jalandhar & Ludhiana.
+                On-site shoot crews stationed in {SITE_CONFIG.citiesEn}.
               </div>
 
               <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -96,11 +97,11 @@ export const TourDetailsSection: React.FC<TourDetailsSectionProps> = ({
                 </button>
 
                 <a
-                  href="tel:+917508094760"
+                  href={SITE_CONFIG.phoneHref}
                   className="w-full sm:w-auto px-5 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-bold transition-colors flex items-center justify-center gap-2"
                 >
                   <Phone className="w-4 h-4 text-[#d94819]" />
-                  <span>+91 7508094760</span>
+                  <span>{SITE_CONFIG.phoneDisplay}</span>
                 </a>
               </div>
             </div>

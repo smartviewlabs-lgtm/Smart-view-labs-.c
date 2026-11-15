@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrandLogo } from './BrandLogo';
 import { Language } from '../data/translations';
-import { Phone, Mail, MessageSquare, MapPin, ShieldCheck, Heart } from 'lucide-react';
+import { SITE_CONFIG, getWhatsAppUrl } from '../data/siteConfig';
+import { Phone, Mail, MessageSquare, MapPin, ShieldCheck } from 'lucide-react';
 
 interface FooterProps {
   lang: Language;
@@ -18,34 +19,36 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenBooking }) => {
           <div className="lg:col-span-4 space-y-4">
             <BrandLogo size="lg" lightText={true} />
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
-              Punjab’s premier 360° Virtual Tour, Google Street View certification, and custom website designing full-service digital marketing agency.
+              {lang === 'hi'
+                ? 'पंजाब की अग्रणी 360° वर्चुअल टूर, गूगल स्ट्रीट व्यू और कस्टम वेबसाइट डिजाइनिंग डिजिटल मार्केटिंग एजेंसी।'
+                : 'Punjab’s premier 360° Virtual Tour, Google Street View certification, and custom website designing full-service digital marketing agency.'}
             </p>
 
             <div className="pt-2 space-y-2 text-xs text-slate-300">
               <a
-                href="tel:+917508094760"
+                href={SITE_CONFIG.phoneHref}
                 className="flex items-center gap-2 hover:text-amber-400 transition-colors"
               >
                 <Phone className="w-4 h-4 text-[#ea580c]" />
-                <span className="font-semibold">+91 7508094760 (Direct Calling)</span>
+                <span className="font-semibold">{SITE_CONFIG.phoneDisplay} (Direct Calling)</span>
               </a>
 
               <a
-                href="https://wa.me/917508094760"
+                href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
               >
                 <MessageSquare className="w-4 h-4 text-emerald-400 fill-current" />
-                <span className="font-semibold">WhatsApp: +91 7508094760</span>
+                <span className="font-semibold">WhatsApp: {SITE_CONFIG.phoneDisplay}</span>
               </a>
 
               <a
-                href="mailto:smartviewlabs@gmail.com"
+                href={SITE_CONFIG.emailHref}
                 className="flex items-center gap-2 hover:text-amber-400 transition-colors"
               >
                 <Mail className="w-4 h-4 text-cyan-400" />
-                <span>smartviewlabs@gmail.com</span>
+                <span>{SITE_CONFIG.email}</span>
               </a>
             </div>
           </div>
@@ -147,12 +150,12 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenBooking }) => {
         {/* Bottom Bar */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            © {new Date().getFullYear()} Smart View Labs. All Rights Reserved. Serving Punjab & Tricity.
+            © {new Date().getFullYear()} {SITE_CONFIG.brandName}. All Rights Reserved. Serving Punjab & Tricity.
           </div>
           <div className="flex items-center gap-4">
-            <span>Direct: +91 7508094760</span>
+            <span>Direct: {SITE_CONFIG.phoneDisplay}</span>
             <span>·</span>
-            <span>smartviewlabs@gmail.com</span>
+            <span>{SITE_CONFIG.email}</span>
           </div>
         </div>
       </div>

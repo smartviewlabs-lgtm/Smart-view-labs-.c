@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { SHOWCASE_CARDS, ShowcaseCard, TOUR_SPACES, TourSpace } from '../data/tourSpaces';
+import { SHOWCASE_CARDS } from '../data/tourSpaces';
 import { Language, contentData } from '../data/translations';
-import { Sparkles, MapPin, Eye, ArrowUpRight, TrendingUp, Check } from 'lucide-react';
+import { SITE_CONFIG } from '../data/siteConfig';
+import { MapPin, Eye, ArrowUpRight, TrendingUp } from 'lucide-react';
 
 interface AllCardsShowcaseProps {
   lang: Language;
@@ -181,10 +182,10 @@ export const AllCardsShowcase: React.FC<AllCardsShowcaseProps> = ({
 
           <div className="flex items-center gap-3 shrink-0">
             <a
-              href="tel:+917508094760"
+              href={SITE_CONFIG.phoneHref}
               className="px-5 py-2.5 rounded-full bg-white text-slate-900 text-xs sm:text-sm font-bold hover:bg-slate-100 transition-colors"
             >
-              +91 7508094760
+              {SITE_CONFIG.phoneDisplay}
             </a>
             <button
               type="button"

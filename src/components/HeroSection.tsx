@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { TourSpace, TOUR_SPACES, Hotspot } from '../data/tourSpaces';
+import React from 'react';
+import { TourSpace, TOUR_SPACES } from '../data/tourSpaces';
 import { ThreeSixtyViewer } from './ThreeSixtyViewer';
 import { Language, contentData } from '../data/translations';
-import { Sparkles, MapPin, Eye, CheckCircle2 } from 'lucide-react';
+import { SITE_CONFIG } from '../data/siteConfig';
+import { MapPin, Eye, CheckCircle2 } from 'lucide-react';
 
 interface HeroSectionProps {
   lang: Language;
@@ -79,8 +80,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <MapPin className="w-4 h-4 text-[#d94819]" />
             <span>
               {lang === 'hi'
-                ? 'स्थान: चंडीगढ़ · अमृतसर · जालंधर · लुधियाना'
-                : 'Verified shoot locations: Chandigarh · Amritsar · Jalandhar · Ludhiana'}
+                ? `स्थान: ${SITE_CONFIG.citiesHi}`
+                : `Verified shoot locations: ${SITE_CONFIG.citiesEn}`}
             </span>
           </div>
 

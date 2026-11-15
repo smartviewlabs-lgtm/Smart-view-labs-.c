@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SITE_CONFIG } from '../data/siteConfig';
 
 interface BrandLogoProps {
   className?: string;
@@ -6,9 +7,6 @@ interface BrandLogoProps {
   showTagline?: boolean;
   lightText?: boolean;
 }
-
-export const BRAND_FAVICON_URL =
-  'https://github.com/smartviewlabs-lgtm/svl.in/blob/main/Gemini_Generated_Image_8xz6ql8xz6ql8xz6.png?raw=true';
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({
   className = '',
@@ -36,8 +34,8 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
       <div className={`relative shrink-0 rounded-xl overflow-hidden shadow-xs ${iconDimensions} flex items-center justify-center bg-white`}>
         {!imgError ? (
           <img
-            src={BRAND_FAVICON_URL}
-            alt="Smart View Labs"
+            src={SITE_CONFIG.logoUrl}
+            alt={SITE_CONFIG.brandName}
             className="w-full h-full object-contain p-0.5"
             onError={() => setImgError(true)}
           />

@@ -5,34 +5,17 @@ export interface Translations {
     tours: string;
     streetView: string;
     webDesign: string;
-    marketing: string;
     cities: string;
-    contact: string;
     freeDemo: string;
-    callNow: string;
   };
   hero: {
     kicker: string;
     headline: string;
     subtitle: string;
-    dragPrompt: string;
-    autoRotateOn: string;
-    autoRotateOff: string;
-    zoomIn: string;
-    zoomOut: string;
-    fullscreen: string;
-  };
-  spaces: {
-    hotel: string;
-    showroom: string;
-    restaurant: string;
-    banquet: string;
   };
   details: {
     aboutSpace: string;
-    hotspotsTitle: string;
     includesTitle: string;
-    clickToFocus: string;
   };
   allCards: {
     badge: string;
@@ -63,11 +46,7 @@ export interface Translations {
     phone: string;
     businessName: string;
     city: string;
-    selectCity: string;
-    serviceNeeded: string;
     submit: string;
-    whatsappDirect: string;
-    orCallDirect: string;
   };
 }
 
@@ -77,34 +56,17 @@ export const contentData: Record<Language, Translations> = {
       tours: '360° Virtual Tours',
       streetView: 'Google Street View',
       webDesign: 'Website Designing',
-      marketing: 'Digital Marketing & SEO',
       cities: 'Punjab Coverage',
-      contact: 'Contact Us',
       freeDemo: 'Free Demo',
-      callNow: 'Call: +91 7508094760',
     },
     hero: {
       kicker: 'LIVE VIRTUAL TOURS',
       headline: 'Explore our 360° spaces',
-      subtitle: 'Drag, zoom and tap the golden hotspots. This is exactly what your customers will experience.',
-      dragPrompt: 'Drag to look around',
-      autoRotateOn: 'Auto-Rotate',
-      autoRotateOff: 'Pause Rotation',
-      zoomIn: 'Zoom In',
-      zoomOut: 'Zoom Out',
-      fullscreen: 'Fullscreen View',
-    },
-    spaces: {
-      hotel: 'Royal Heritage Hotel',
-      showroom: 'Luxury Showroom',
-      restaurant: 'Fine-Dine Restaurant',
-      banquet: 'Grand Banquet Hall',
+      subtitle: 'Drag to look around and scroll to zoom. This is exactly what your customers will experience.',
     },
     details: {
       aboutSpace: 'ABOUT THIS SPACE',
-      hotspotsTitle: 'HOTSPOTS IN THIS TOUR',
       includesTitle: 'EVERY TOUR INCLUDES',
-      clickToFocus: 'Tap hotspot to inspect',
     },
     allCards: {
       badge: 'PREMIUM 360° EXPERIENCES',
@@ -135,11 +97,7 @@ export const contentData: Record<Language, Translations> = {
       phone: 'Phone / WhatsApp Number',
       businessName: 'Business / Property Name',
       city: 'Your City',
-      selectCity: 'Select Punjab City',
-      serviceNeeded: 'Select Primary Service',
       submit: 'Request Free Consultation',
-      whatsappDirect: 'Chat on WhatsApp (+91 7508094760)',
-      orCallDirect: 'Direct Call: +91 7508094760',
     },
   },
   hi: {
@@ -147,34 +105,17 @@ export const contentData: Record<Language, Translations> = {
       tours: '360° वर्चुअल टूअर',
       streetView: 'गूगल स्ट्रीट व्यू',
       webDesign: 'वेबसाइट डिजाइनिंग',
-      marketing: 'डिजिटल मार्केटिंग व एसईओ',
       cities: 'पंजाब कवरेज',
-      contact: 'संपर्क करें',
       freeDemo: 'मुफ्त डेमो',
-      callNow: 'कॉल: +91 7508094760',
     },
     hero: {
       kicker: 'लाइव वर्चुअल टूर',
       headline: 'हमारे 360° स्पेस का अनुभव लें',
-      subtitle: 'खींचे, ज़ूम करें और सुनहरे हॉटस्पॉट पर टैप करें। आपके ग्राहक भी बिल्कुल यही अनुभव करेंगे।',
-      dragPrompt: 'देखने के लिए ड्रैग करें',
-      autoRotateOn: 'ऑटो-रोटेट',
-      autoRotateOff: 'रोटेशन रोकें',
-      zoomIn: 'ज़ूम इन',
-      zoomOut: 'ज़ूम आउट',
-      fullscreen: 'फुलस्क्रीन देखें',
-    },
-    spaces: {
-      hotel: 'रॉयल हेरिटेज होटल',
-      showroom: 'लक्ज़री शोरूम',
-      restaurant: 'फ़ाइन-डाइन रेस्टोरेंट',
-      banquet: 'ग्रैंड बैंक्वेट हॉल',
+      subtitle: 'चारों ओर देखने के लिए ड्रैग करें और ज़ूम करने के लिए स्क्रॉल करें। आपके ग्राहक भी बिल्कुल यही अनुभव करेंगे।',
     },
     details: {
       aboutSpace: 'इस स्पेस के बारे में',
-      hotspotsTitle: 'इस टूर के प्रमुख हॉटस्पॉट्स',
       includesTitle: 'हर टूर में शामिल सुविधाएं',
-      clickToFocus: 'हॉटस्पॉट पर टैप करके देखें',
     },
     allCards: {
       badge: 'प्रीमियम 360° अनुभव',
@@ -205,11 +146,7 @@ export const contentData: Record<Language, Translations> = {
       phone: 'फोन / व्हाट्सएप नंबर',
       businessName: 'बिजनेस / होटल का नाम',
       city: 'आपका शहर',
-      selectCity: 'पंजाब का शहर चुनें',
-      serviceNeeded: 'आवश्यक सेवा चुनें',
       submit: 'मुफ्त डेमो का अनुरोध करें',
-      whatsappDirect: 'व्हाट्सएप पर बात करें (+91 7508094760)',
-      orCallDirect: 'सीधा कॉल करें: +91 7508094760',
     },
   },
 };

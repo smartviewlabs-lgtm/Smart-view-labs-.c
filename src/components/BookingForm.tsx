@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { Phone, MessageSquare, X, CheckCircle, Sparkles, Send } from 'lucide-react';
 import { Language, contentData } from '../data/translations';
+import { SITE_CONFIG, getWhatsAppUrl } from '../data/siteConfig';
 
 interface BookingFormProps {
   lang: Language;
@@ -22,7 +23,6 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     business: '',
     city: 'Chandigarh',
     service: '360° Virtual Tour + Google Street View',
-    message: '',
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -45,13 +45,13 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   };
 
   const generateWhatsAppLink = () => {
-    const text = `Hello Smart View Labs! I would like to book a 360° Virtual Tour & Digital Marketing consultation:
+    const text = `Hello ${SITE_CONFIG.brandName}! I would like to book a 360° Virtual Tour & Digital Marketing consultation:
 Name: ${formData.name || 'Client'}
 Business: ${formData.business || 'Property'}
 City: ${formData.city}
 Service: ${formData.service}
-Contact: ${formData.phone || '+91 7508094760'}`;
-    return `https://wa.me/917508094760?text=${encodeURIComponent(text)}`;
+Contact: ${formData.phone || SITE_CONFIG.phoneDisplay}`;
+    return getWhatsAppUrl(text);
   };
 
   return (
@@ -108,15 +108,15 @@ Contact: ${formData.phone || '+91 7508094760'}`;
                   className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2"
                 >
                   <MessageSquare className="w-5 h-5 fill-current" />
-                  <span>Send Details on WhatsApp (+91 7508094760)</span>
+                  <span>Send Details on WhatsApp ({SITE_CONFIG.phoneDisplay})</span>
                 </a>
 
                 <a
-                  href="tel:+917508094760"
+                  href={SITE_CONFIG.phoneHref}
                   className="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm flex items-center justify-center gap-2"
                 >
                   <Phone className="w-4 h-4 text-amber-300" />
-                  <span>Direct Call: +91 7508094760</span>
+                  <span>Direct Call: {SITE_CONFIG.phoneDisplay}</span>
                 </a>
 
                 <button
@@ -234,7 +234,7 @@ Contact: ${formData.phone || '+91 7508094760'}`;
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <a
-                    href="https://wa.me/917508094760?text=Hello%20Smart%20View%20Labs%2C%20I%20want%20to%20discuss%20a%20360%20Virtual%20Tour%20and%20Digital%20Marketing%20project."
+                    href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noreferrer"
                     className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-xs"
@@ -244,11 +244,11 @@ Contact: ${formData.phone || '+91 7508094760'}`;
                   </a>
 
                   <a
-                    href="tel:+917508094760"
+                    href={SITE_CONFIG.phoneHref}
                     className="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-xs"
                   >
                     <Phone className="w-4 h-4 text-amber-300" />
-                    <span>+91 7508094760</span>
+                    <span>{SITE_CONFIG.phoneDisplay}</span>
                   </a>
                 </div>
               </div>

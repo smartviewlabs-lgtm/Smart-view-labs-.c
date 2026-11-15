@@ -1,6 +1,7 @@
 import React from 'react';
 import { Language, contentData } from '../data/translations';
-import { Compass, Globe, Search, Megaphone, Check, ShieldCheck, Zap, TrendingUp, BarChart3 } from 'lucide-react';
+import { SITE_CONFIG } from '../data/siteConfig';
+import { Compass, Globe, Search, Megaphone, Check } from 'lucide-react';
 
 interface ServicesSectionProps {
   lang: Language;
@@ -245,7 +246,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ lang, onOpenBo
           {/* Action strip */}
           <div className="mt-8 pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-xs sm:text-sm text-slate-600 font-medium text-center sm:text-left">
-              Serving Chandigarh Tricity · Amritsar · Jalandhar · Ludhiana with rapid on-site dispatch.
+              Serving {SITE_CONFIG.citiesEn} with rapid on-site dispatch.
             </div>
             <button
               type="button"

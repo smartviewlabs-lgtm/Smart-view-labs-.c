@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, MessageSquare, Calendar, ChevronUp } from 'lucide-react';
+import { SITE_CONFIG, getWhatsAppUrl } from '../data/siteConfig';
 
 interface FloatingActionsProps {
   onOpenBooking: () => void;
@@ -29,12 +30,12 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenBooking 
       <div className="relative flex items-center">
         {showTooltip && (
           <div className="hidden sm:block absolute right-16 bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl whitespace-nowrap shadow-lg border border-slate-700 animate-in fade-in slide-in-from-right-2 duration-150">
-            WhatsApp Smart View Labs (+91 7508094760)
+            WhatsApp {SITE_CONFIG.brandName} ({SITE_CONFIG.phoneDisplay})
           </div>
         )}
 
         <a
-          href="https://wa.me/917508094760?text=Hello%20Smart%20View%20Labs%2C%20I%20would%20like%20to%20discuss%20a%20360%20Virtual%20Tour%20and%20Digital%20Marketing%20project."
+          href={getWhatsAppUrl()}
           target="_blank"
           rel="noreferrer"
           onMouseEnter={() => setShowTooltip(true)}
@@ -50,7 +51,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenBooking 
       {/* Mobile quick action pill for direct phone */}
       <div className="sm:hidden flex items-center gap-2">
         <a
-          href="tel:+917508094760"
+          href={SITE_CONFIG.phoneHref}
           className="px-3.5 py-2 rounded-full bg-slate-900 text-white text-xs font-bold shadow-lg flex items-center gap-1.5 border border-slate-700"
         >
           <Phone className="w-3.5 h-3.5 text-[#ea580c]" />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X, Phone, MessageSquare, ExternalLink } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
+import { SITE_CONFIG, getWhatsAppUrl } from '../data/siteConfig';
 import { Language, contentData } from '../data/translations';
 
 interface NavbarProps {
@@ -64,11 +65,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             {/* Phone link on desktop */}
             <a
-              href="tel:+917508094760"
+              href={SITE_CONFIG.phoneHref}
               className="hidden xl:flex items-center gap-1.5 text-xs font-bold text-slate-800 hover:text-[#ea580c] transition-colors bg-white/70 px-3 py-1.5 rounded-full border border-slate-200 shadow-xs"
             >
               <Phone className="w-3.5 h-3.5 text-[#ea580c]" />
-              <span>+91 7508094760</span>
+              <span>{SITE_CONFIG.phoneDisplay}</span>
             </a>
 
             {/* Language Switcher EN / हि (EXACTLY matching screenshot) */}
@@ -164,21 +165,23 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Direct Contact Links in Mobile Menu */}
             <div className="pt-2 flex flex-col gap-2">
               <a
-                href="tel:+917508094760"
+                href={SITE_CONFIG.phoneHref}
                 className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white border border-slate-300 text-slate-900 text-sm font-bold shadow-xs"
               >
                 <Phone className="w-4 h-4 text-[#ea580c]" />
-                <span>+91 7508094760</span>
+                <span>{SITE_CONFIG.phoneDisplay}</span>
               </a>
 
               <a
-                href="https://wa.me/917508094760?text=Hello%20Smart%20View%20Labs,%20I%20want%20to%20book%20a%20360%20Virtual%20Tour%20and%20Digital%20Marketing%20consultation."
+                href={getWhatsAppUrl(
+                  'Hello Smart View Labs, I want to book a 360 Virtual Tour and Digital Marketing consultation.'
+                )}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-xs"
               >
                 <MessageSquare className="w-4 h-4 fill-current" />
-                <span>WhatsApp: +91 7508094760</span>
+                <span>WhatsApp: {SITE_CONFIG.phoneDisplay}</span>
               </a>
 
               <button

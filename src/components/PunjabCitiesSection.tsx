@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Language, contentData } from '../data/translations';
+import { SITE_CONFIG } from '../data/siteConfig';
 import { MapPin, Building, ShieldCheck, Clock, Phone, ArrowRight } from 'lucide-react';
 
 interface PunjabCitiesSectionProps {
@@ -203,11 +204,11 @@ export const PunjabCitiesSection: React.FC<PunjabCitiesSectionProps> = ({
               </button>
 
               <a
-                href="tel:+917508094760"
+                href={SITE_CONFIG.phoneHref}
                 className="w-full py-2.5 px-4 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-colors flex items-center justify-center gap-2 text-center"
               >
                 <Phone className="w-3.5 h-3.5 text-[#d94819]" />
-                <span>Call City Coordinator: +91 7508094760</span>
+                <span>Call City Coordinator: {SITE_CONFIG.phoneDisplay}</span>
               </a>
             </div>
           </div>

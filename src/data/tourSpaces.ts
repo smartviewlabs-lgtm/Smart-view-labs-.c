@@ -3,20 +3,6 @@ import hotelSuiteImg from '../assets/images/hotel_suite_luxury_360_1794489894032
 import restaurantImg from '../assets/images/restaurant_finedine_360_1794489896391.jpg';
 import banquetHallImg from '../assets/images/banquet_hall_punjab_360_1794489894225.jpg';
 
-export interface Hotspot {
-  id: string;
-  name: string;
-  nameHi: string;
-  category: string;
-  description: string;
-  descriptionHi: string;
-  // Spherical coordinates for 3D placement (pitch & yaw in degrees)
-  yaw: number; // horizontal angle (-180 to 180)
-  pitch: number; // vertical angle (-90 to 90)
-  highlightTag?: string;
-  iconType?: 'pin' | 'car' | 'bed' | 'wine' | 'sparkles' | 'utensils';
-}
-
 export interface TourSpace {
   id: string;
   slug: string;
@@ -30,7 +16,6 @@ export interface TourSpace {
   description: string;
   descriptionHi: string;
   image: string;
-  hotspots: Hotspot[];
   features: {
     en: string;
     hi: string;
@@ -55,56 +40,6 @@ export const TOUR_SPACES: TourSpace[] = [
     description: 'Ultra-high resolution 360° virtual showroom designed for luxury automobile dealerships and high-end retail studios. Features clickable specification popups, custom paint preview links, and direct WhatsApp sales lead routing.',
     descriptionHi: 'लक्जरी ऑटोमोबाइल डीलरशिप और प्रीमियम रिटेल शोरूम के लिए बनाया गया 360° वर्चुअल वॉकथ्रू। ग्राहक सीधे व्हाट्सएप पर टेस्ट ड्राइव व मूल्य की जानकारी ले सकते हैं।',
     image: carShowroomImg,
-    hotspots: [
-      {
-        id: 'hs-reception',
-        name: 'Reception',
-        nameHi: 'रिसेप्शन और वेलकम लाउंज',
-        category: 'Customer Service',
-        description: 'Bespoke marble reception with digital client check-in and dedicated concierge desk.',
-        descriptionHi: 'मार्बल फिनिश रिसेप्शन डेस्क जहां ग्राहक सीधे सेल्स कंसल्टेंट से संपर्क कर सकते हैं।',
-        yaw: 12,
-        pitch: -4,
-        iconType: 'pin',
-        highlightTag: 'Main Desk',
-      },
-      {
-        id: 'hs-coupe',
-        name: 'Sports coupé',
-        nameHi: 'स्पोर्ट्स कूपे (रेड एडिशन)',
-        category: 'Featured Vehicle',
-        description: 'V8 Twin-Turbo luxury coupe with aerodynamic carbon aero kit and hand-stitched leather.',
-        descriptionHi: 'ट्विन-टर्बो वी8 स्पोर्ट्स कूपे। 360° एक्सटीरियर और इंटीरियर स्पेसिफिकेशन जांचें।',
-        yaw: -60,
-        pitch: -12,
-        iconType: 'car',
-        highlightTag: '0-100 in 2.9s',
-      },
-      {
-        id: 'hs-tourer',
-        name: 'Grand tourer',
-        nameHi: 'ग्रैंड टूरर वीआईपी',
-        category: 'Luxury Fleet',
-        description: 'Executive grand tourer with panoramic glass moonroof and dynamic matrix illumination.',
-        descriptionHi: 'कार्यकारी क्लास सेडान। लक्जरी कंफर्ट और एडवांस सेफ्टी फीचर्स।',
-        yaw: 45,
-        pitch: -10,
-        iconType: 'car',
-        highlightTag: 'Flagship',
-      },
-      {
-        id: 'hs-skyline',
-        name: 'City skyline',
-        nameHi: 'सिटी स्काईलाइन व ग्लास पवेलियन',
-        category: 'Architecture',
-        description: 'Floor-to-ceiling acoustic glass frontage offering panoramic views of Chandigarh.',
-        descriptionHi: 'पूरी कांच की दीवारें जो शोरूम को दिन में प्राकृतिक रोशनी और भव्य लुक देती हैं।',
-        yaw: 135,
-        pitch: 15,
-        iconType: 'sparkles',
-        highlightTag: 'View',
-      },
-    ],
     features: [
       { en: 'Clickable info hotspots with tech specs & pricing', hi: 'तकनीकी जानकारी और कीमतों के साथ क्लिक करने योग्य हॉटस्पॉट' },
       { en: 'Official Google Street View integration & Maps placement', hi: 'आधिकारिक गूगल स्ट्रीट व्यू और गूगल मैप्स एकीकरण' },
@@ -133,56 +68,6 @@ export const TOUR_SPACES: TourSpace[] = [
     description: 'Immersive 360° walkthrough of a presidential heritage suite and grand royal foyer. Perfect for boutique hotels, resorts, and heritage properties looking to boost direct online room bookings by over 300%.',
     descriptionHi: 'प्रेसिडेंशियल हेरिटेज सुइट और ग्रैंड लॉबी का 360° वर्चुअल टूअर। होटल वेबसाइट्स के लिए डायरेक्ट रूम बुकिंग 3 गुना बढ़ाने में कारगर।',
     image: hotelSuiteImg,
-    hotspots: [
-      {
-        id: 'hs-bed',
-        name: 'Presidential Master Suite',
-        nameHi: 'प्रेसिडेंशियल मास्टर सुइट',
-        category: 'Luxury Suite',
-        description: 'King-size carved teakwood bed dressed in 800-thread-count Egyptian cotton with silk drapery.',
-        descriptionHi: 'हस्तनिर्मित सागवान की नक्काशीदार किंग बेड और शुद्ध रेशमी पर्दों से सुसज्जित रॉयल बेडरूम।',
-        yaw: 48,
-        pitch: -14,
-        iconType: 'bed',
-        highlightTag: 'King Bed',
-      },
-      {
-        id: 'hs-chandelier',
-        name: 'Crystal Chandelier & Hearth',
-        nameHi: 'क्रिस्टल झूमर और मार्बल फायरप्लेस',
-        category: 'Architectural Craft',
-        description: 'Hand-cut Bohemian crystal chandelier illuminating Italian Botticino marble and carved fireplace.',
-        descriptionHi: 'हाथ से तराशा गया बोहेमियन क्रिस्टल झूमर और इटैलियन मार्बल का शानदार फायरप्लेस।',
-        yaw: 0,
-        pitch: 28,
-        iconType: 'sparkles',
-        highlightTag: 'Chandelier',
-      },
-      {
-        id: 'hs-balcony',
-        name: 'Panoramic Balcony View',
-        nameHi: 'पैनोरमिक बालकनी व गार्डन व्यू',
-        category: 'Scenic View',
-        description: 'Double-glazed soundproof glass walls overlooking manicured Mughal-inspired hotel gardens.',
-        descriptionHi: 'खूबसूरत बगीचे और शहर का मनोरम नजारा दिखाने वाली साउंडप्रूफ बालकनी।',
-        yaw: -78,
-        pitch: 6,
-        iconType: 'pin',
-        highlightTag: 'Balcony',
-      },
-      {
-        id: 'hs-lounge',
-        name: 'Private Sitting Lounge',
-        nameHi: 'प्राइवेट सिटिंग लाउंज',
-        category: 'Comfort',
-        description: 'Plush velvet armchairs with gold leaf accents for private high tea and client meetings.',
-        descriptionHi: 'रॉयल हाई-टी और आरामदायक बैठकों के लिए विशेष मखमली सोफा लाउंज।',
-        yaw: -30,
-        pitch: -18,
-        iconType: 'sparkles',
-        highlightTag: 'Lounge',
-      },
-    ],
     features: [
       { en: 'Direct "Book This Suite" CTA link within the 360 panorama', hi: '360° टूर के भीतर सीधा "बुक दिस रूम" बटन' },
       { en: 'Night / Day ambient lighting comparison mode', hi: 'दिन और रात की एंबियंट लाइटिंग देखने का विकल्प' },
@@ -211,56 +96,6 @@ export const TOUR_SPACES: TourSpace[] = [
     description: 'Bespoke virtual walk-through capturing the mood, acoustic warmth, and architectural craftsmanship of fine dining restaurants. Guests can reserve exact private tables and view signature menus inside the tour.',
     descriptionHi: 'फाइन डाइनिंग रेस्टोरेंट और प्रीमियम बार लाउंज के लिए संवादात्मक 360° टूर। ग्राहक अपनी मनपसंद टेबल देखकर सीधे ऑनलाइन रिजर्व कर सकते हैं।',
     image: restaurantImg,
-    hotspots: [
-      {
-        id: 'hs-bar',
-        name: 'Artisanal Cocktail Bar',
-        nameHi: 'आर्टिसनल कॉकटेल बार व वाइन सेलर',
-        category: 'Mixology',
-        description: 'Polished walnut bar counter with back-lit single malt displays and expert mixologists.',
-        descriptionHi: 'प्रीमियम अखरोट की लकड़ी का बार काउंटर और विश्वस्तरीय पेय मेनू।',
-        yaw: 52,
-        pitch: -8,
-        iconType: 'wine',
-        highlightTag: 'Bar',
-      },
-      {
-        id: 'hs-booths',
-        name: 'Plush Velvet Dining Booths',
-        nameHi: 'रॉयल वेलवेट डाइनिंग बूथ्स',
-        category: 'Seating',
-        description: 'Curved sapphire velvet banquettes designed for intimate romantic dinners and family celebrations.',
-        descriptionHi: 'रोमांटिक डिनर और पारिवारिक समारोहों के लिए आरामदायक नीले मखमली सोफे।',
-        yaw: -48,
-        pitch: -15,
-        iconType: 'utensils',
-        highlightTag: 'Booth 04',
-      },
-      {
-        id: 'hs-cellar',
-        name: 'Climate-Controlled Wine Wall',
-        nameHi: 'तापमान-नियंत्रित वाइन वाल',
-        category: 'Collection',
-        description: 'Floor-to-ceiling glass enclosed sommelier cellar housing vintage champagnes and old-world reds.',
-        descriptionHi: 'पूरी कांच की वाइन डिस्प्ले जिसमें दुर्लभ विंटेज वाइन का संग्रह है।',
-        yaw: 85,
-        pitch: 12,
-        iconType: 'wine',
-        highlightTag: 'Wine Cellar',
-      },
-      {
-        id: 'hs-chef',
-        name: 'Live Chef Plating Station',
-        nameHi: 'लाइव शेफ प्लेटिंग स्टेशन',
-        category: 'Experience',
-        description: 'Interactive culinary counter where guests observe Michelin-inspired gastronomy techniques.',
-        descriptionHi: 'लाइव शेफ काउंटर जहां व्यंजन तैयार करने की कला प्रत्यक्ष देखी जा सकती है।',
-        yaw: -12,
-        pitch: -6,
-        iconType: 'utensils',
-        highlightTag: 'Live Kitchen',
-      },
-    ],
     features: [
       { en: 'Click-to-table reservation integration via WhatsApp or Zomato', hi: 'व्हाट्सएप या जोमैटो के माध्यम से टेबल रिजर्वेशन' },
       { en: 'Digital interactive food & cocktail menu hotspots with photos', hi: 'व्यंजनों और कॉकटेल की तस्वीरों के साथ डिजिटल मेनू' },
@@ -289,56 +124,6 @@ export const TOUR_SPACES: TourSpace[] = [
     description: 'Designed specifically for Punjab destination weddings and royal banquet resorts. Allows NRI families from Canada, UK, and USA to inspect the 1000+ guest seating, mandap stage, and catering layouts without flying in.',
     descriptionHi: 'पंजाब की भव्य शादियों और पैलेस रिजॉर्ट्स के लिए 360° वर्चुअल टूर। एनआरआई परिवार घर बैठे पूरी स्टेज, मंडप और 1000+ लोगों की बैठक व्यवस्था देख सकते हैं।',
     image: banquetHallImg,
-    hotspots: [
-      {
-        id: 'hs-stage',
-        name: 'Grand Royal Stage & Mandap',
-        nameHi: 'ग्रैंड रॉयल स्टेज व मंडप',
-        category: 'Wedding Decor',
-        description: 'Opulent arched stage with gold filigree columns, floral chandeliers, and dynamic LED lighting.',
-        descriptionHi: 'स्वर्ण नक्काशीदार खंभों और सुगंधित फूलों से सुसज्जित भव्य विवाह स्टेज।',
-        yaw: 0,
-        pitch: -2,
-        iconType: 'sparkles',
-        highlightTag: 'Main Stage',
-      },
-      {
-        id: 'hs-chandelier-dome',
-        name: 'Crystal Chandelier Dome',
-        nameHi: 'क्रिस्टल झूमर व शाही गुंबद',
-        category: 'Architecture',
-        description: 'Multi-tiered cascading imperial crystal chandeliers hanging from a gold-leaf coffered dome.',
-        descriptionHi: 'सोने की परत वाले गुंबद से लटकते विशालकाय शाही क्रिस्टल झूमर।',
-        yaw: 0,
-        pitch: 35,
-        iconType: 'sparkles',
-        highlightTag: 'Dome',
-      },
-      {
-        id: 'hs-banquet-dining',
-        name: '1000-Guest Banquet Seating',
-        nameHi: '1000 मेहमानों की डाइनिंग व्यवस्था',
-        category: 'Seating Layout',
-        description: 'Round dining arrangements with damask tablecloths, Chiavari chairs, and central floral vases.',
-        descriptionHi: 'भव्य गोल डाइनिंग टेबल, सोने की चियावारी कुर्सियां और मनमोहक टेबल डेकोर।',
-        yaw: -65,
-        pitch: -18,
-        iconType: 'utensils',
-        highlightTag: 'Capacity',
-      },
-      {
-        id: 'hs-entry',
-        name: 'Bridal Grand Entry Aisle',
-        nameHi: 'दुल्हन की भव्य एंट्री गैलरी',
-        category: 'Experience',
-        description: 'Carpeted grand entrance flanked by brass urns, ambient mood spotlights, and red carpet.',
-        descriptionHi: 'दुल्हन और बारात के भव्य स्वागत के लिए सुसज्जित शाही रेड-कार्पेट गलियारा।',
-        yaw: 120,
-        pitch: -8,
-        iconType: 'pin',
-        highlightTag: 'Entry',
-      },
-    ],
     features: [
       { en: 'NRI family virtual walkthrough tool with remote sharing link', hi: 'विदेश में बैठे एनआरआई परिवारों के लिए आसान शेयरिंग लिंक' },
       { en: 'Pre-wedding stage, ring ceremony, and sangeet layout switches', hi: 'सगाई, संगीत और मुख्य विवाह की अलग-अलग स्टेज व्यवस्थाएं' },

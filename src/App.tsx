@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { TourDetailsSection } from './components/TourDetailsSection';
@@ -14,17 +15,17 @@ import { Language } from './data/translations';
 
 export default function App() {
   const [lang, setLang] = useState<Language>('en');
-  // Initialize with 'luxury-showroom' as depicted in screenshot 1 and 2
   const [selectedSpace, setSelectedSpace] = useState<TourSpace>(TOUR_SPACES[0]);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  // Switch space
-  const handleSelectSpace = (space: TourSpace) => {
-    setSelectedSpace(space);
-  };
+  const openBooking = useCallback(() => setIsBookingOpen(true), []);
+  const closeBooking = useCallback(() => setIsBookingOpen(false), []);
 
-  // Switch space by ID from showcase cards and smoothly scroll up to the 360 tour
-  const handleSelectSpaceById = (spaceId: string) => {
+  const handleSelectSpace = useCallback((space: TourSpace) => {
+    setSelectedSpace(space);
+  }, []);
+
+  const handleSelectSpaceById = useCallback((spaceId: string) => {
     const space = TOUR_SPACES.find((s) => s.id === spaceId || s.slug === spaceId);
     if (space) {
       setSelectedSpace(space);
@@ -33,73 +34,62 @@ export default function App() {
         toursSection.scrollIntoView({ behavior: 'smooth' });
       }
     }
-  };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#fcf6ee] text-slate-800 flex flex-col font-sans selection:bg-[#ea580c] selection:text-white">
-      {/* Top Navigation */}
-      <Navbar
-        lang={lang}
-        onLanguageChange={setLang}
-        onOpenBooking={() => setIsBookingOpen(true)}
-      />
-
-      <main className="flex-1">
-        {/* Hero Section with Clean 360 Viewer */}
-        <HeroSection
+    <ErrorBoundary>
+      <div className="min-h-screen bg-[#fcf6ee] text-slate-800 flex flex-col font-sans selection:bg-[#ea580c] selection:text-white">
+        <Navbar
           lang={lang}
-          selectedSpace={selectedSpace}
-          onSelectSpace={handleSelectSpace}
+          onLanguageChange={setLang}
+          onOpenBooking={openBooking}
         />
 
-        {/* About This Space & Inclusions */}
-        <TourDetailsSection
-          space={selectedSpace}
+        <main className="flex-1">
+          <HeroSection
+            lang={lang}
+            selectedSpace={selectedSpace}
+            onSelectSpace={handleSelectSpace}
+          />
+
+          <TourDetailsSection
+            space={selectedSpace}
+            lang={lang}
+            onOpenBooking={openBooking}
+          />
+
+          <AllCardsShowcase
+            lang={lang}
+            onSelectSpaceById={handleSelectSpaceById}
+            onOpenBooking={openBooking}
+          />
+
+          <StreetViewSection
+            lang={lang}
+            onOpenBooking={openBooking}
+          />
+
+          <ServicesSection
+            lang={lang}
+            onOpenBooking={openBooking}
+          />
+
+          <PunjabCitiesSection
+            lang={lang}
+            onOpenBooking={openBooking}
+          />
+        </main>
+
+        <Footer lang={lang} onOpenBooking={openBooking} />
+
+        <FloatingActions onOpenBooking={openBooking} />
+
+        <BookingForm
           lang={lang}
-          onOpenBooking={() => setIsBookingOpen(true)}
+          isOpen={isBookingOpen}
+          onClose={closeBooking}
         />
-
-        {/* ALL CARDS Showcase - Luxury Rooms, Lobby, Banquet, Dining */}
-        <AllCardsShowcase
-          lang={lang}
-          onSelectSpaceById={handleSelectSpaceById}
-          onOpenBooking={() => setIsBookingOpen(true)}
-        />
-
-        {/* Google Street View Certification & Google Maps Local SEO */}
-        <StreetViewSection
-          lang={lang}
-          onOpenBooking={() => setIsBookingOpen(true)}
-        />
-
-        {/* Full-Service Digital Marketing Agency & 4 Pillars */}
-        <ServicesSection
-          lang={lang}
-          onOpenBooking={() => setIsBookingOpen(true)}
-        />
-
-        {/* Punjab Regional Hubs: Chandigarh, Amritsar, Jalandhar, Ludhiana */}
-        <PunjabCitiesSection
-          lang={lang}
-          onOpenBooking={() => setIsBookingOpen(true)}
-        />
-      </main>
-
-      {/* Footer */}
-      <Footer
-        lang={lang}
-        onOpenBooking={() => setIsBookingOpen(true)}
-      />
-
-      {/* Floating Action Trigger (WhatsApp & Call) */}
-      <FloatingActions onOpenBooking={() => setIsBookingOpen(true)} />
-
-      {/* Lead Capture & Free Demo Consultation Modal */}
-      <BookingForm
-        lang={lang}
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-      />
-    </div>
+      </div>
+    </ErrorBoundary>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Language } from '../data/translations';
-import { Map, CheckCircle2, Award, Eye, Search, Smartphone, ArrowRight } from 'lucide-react';
+import { SITE_CONFIG } from '../data/siteConfig';
+import { CheckCircle2, Award, ArrowRight } from 'lucide-react';
 import hotelSuiteImg from '../assets/images/hotel_suite_luxury_360_1794489894032.jpg';
 
 interface StreetViewSectionProps {
@@ -81,10 +82,10 @@ export const StreetViewSection: React.FC<StreetViewSectionProps> = ({
               </button>
 
               <a
-                href="tel:+917508094760"
+                href={SITE_CONFIG.phoneHref}
                 className="text-xs sm:text-sm font-bold text-slate-700 hover:text-[#d94819] transition-colors py-2"
               >
-                Punjab Desk: +91 7508094760
+                Punjab Desk: {SITE_CONFIG.phoneDisplay}
               </a>
             </div>
           </div>
@@ -126,7 +127,7 @@ export const StreetViewSection: React.FC<StreetViewSectionProps> = ({
 
                 <div className="absolute bottom-3 left-3 right-3 text-white">
                   <div className="text-xs font-bold">Punjab Luxury Venue Showcase</div>
-                  <div className="text-[10px] text-slate-300">Chandigarh · Amritsar · Jalandhar · Ludhiana</div>
+                  <div className="text-[10px] text-slate-300">{SITE_CONFIG.citiesEn}</div>
                 </div>
               </div>
 
