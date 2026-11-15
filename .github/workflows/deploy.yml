@@ -28,7 +28,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps --no-audit --no-fund
 
       - name: Typecheck application
         run: npm run lint
@@ -46,6 +46,8 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
