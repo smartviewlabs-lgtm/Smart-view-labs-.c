@@ -111,7 +111,7 @@ export const TOUR_SPACES: TourSpace[] = [
     specifications: [
       { label: 'Ideal For', value: 'Fine Dining & Microbreweries' },
       { label: 'Weekend Table Bookings', value: '+185% Growth' },
-      { label: 'Google 3-Pack Rank', value: '#1 for Dining In City' },
+      { label: 'Google 3-Pack Rank', value: 'Top Rank for Dining In City' },
       { label: 'Mobile Experience', value: 'Zero-Lag 60 FPS' },
     ],
   },
@@ -133,7 +133,7 @@ export const TOUR_SPACES: TourSpace[] = [
       { en: 'Pre-wedding stage, ring ceremony, and sangeet layout switches', hi: 'सगाई, संगीत और मुख्य विवाह की अलग-अलग स्टेज व्यवस्थाएं' },
       { en: 'Direct WhatsApp inquiry button with date-check form', hi: 'तारीख की उपलब्धता जांचने वाला सीधा व्हाट्सएप बटन' },
       { en: 'Drone 360° aerial lawn & parking lot integration', hi: 'ड्रोन 360° एरियल व्यू जिससे विशाल लॉन व पार्किंग दिख सके' },
-      { en: 'Google Maps Business Profile #1 Wedding Resort ranking boost', hi: 'गूगल मैप्स पर पंजाब के शीर्ष वेडिंग वेन्यू के रूप में रैंकिंग' },
+      { en: 'Google Maps Business Profile top Wedding Resort ranking boost', hi: 'गूगल मैप्स पर पंजाब के शीर्ष वेडिंग वेन्यू के रूप में रैंकिंग' },
       { en: 'Closes NRI destination wedding packages worth ₹25L–₹1Cr faster', hi: 'बड़े बजट की डेस्टिनेशन वेडिंग्स को तेजी से फाइनल करने में मददगार' },
     ],
     specifications: [

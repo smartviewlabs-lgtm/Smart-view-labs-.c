@@ -6,58 +6,92 @@ import { Language, contentData } from '../data/translations';
 
 interface NavbarProps {
   lang: Language;
+  activePage: 'home' | 'blog';
+  onNavigate: (page: 'home' | 'blog', sectionId?: string) => void;
   onLanguageChange: (lang: Language) => void;
   onOpenBooking: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   lang,
+  activePage,
+  onNavigate,
   onLanguageChange,
   onOpenBooking,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const t = contentData[lang].nav;
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    page: 'home' | 'blog',
+    sectionId?: string
+  ) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    onNavigate(page, sectionId);
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full bg-[#fcf6ee]/90 backdrop-blur-md border-b border-[#ebd7c2]/70 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4 lg:gap-8">
+        <div className="flex items-center justify-between h-20 gap-3 lg:gap-6">
           {/* Zone 1: Brand Wordmark & Emblem */}
-          <a href="#" className="flex items-center shrink-0">
+          <a
+            href="#/"
+            onClick={(e) => handleNavClick(e, 'home')}
+            className="flex items-center shrink-0"
+          >
             <BrandLogo size="md" />
           </a>
 
           {/* Zone 2: Navigation Links (Desktop) */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-semibold text-slate-700">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-sm font-semibold text-slate-700">
             <a
               href="#tours"
+              onClick={(e) => handleNavClick(e, 'home', 'tours')}
               className="hover:text-[#ea580c] transition-colors whitespace-nowrap shrink-0"
             >
               {t.tours}
             </a>
             <a
               href="#showcase"
+              onClick={(e) => handleNavClick(e, 'home', 'showcase')}
               className="hover:text-[#ea580c] transition-colors whitespace-nowrap shrink-0"
             >
               Spaces Showcase
             </a>
             <a
               href="#street-view"
+              onClick={(e) => handleNavClick(e, 'home', 'street-view')}
               className="hover:text-[#ea580c] transition-colors whitespace-nowrap shrink-0"
             >
               {t.streetView}
             </a>
             <a
               href="#services"
+              onClick={(e) => handleNavClick(e, 'home', 'services')}
               className="hover:text-[#ea580c] transition-colors whitespace-nowrap shrink-0"
             >
               {t.webDesign} & SEO
             </a>
             <a
               href="#punjab-cities"
+              onClick={(e) => handleNavClick(e, 'home', 'punjab-cities')}
               className="hover:text-[#ea580c] transition-colors whitespace-nowrap shrink-0"
             >
               {t.cities}
+            </a>
+            <a
+              href="#/blog"
+              onClick={(e) => handleNavClick(e, 'blog')}
+              className={`px-3 py-1.5 rounded-full transition-all whitespace-nowrap shrink-0 ${
+                activePage === 'blog'
+                  ? 'bg-[#0f172a] text-white shadow-xs'
+                  : 'text-[#d94819] bg-[#fcece6]/70 hover:bg-[#fcece6]'
+              }`}
+            >
+              {t.blog}
             </a>
           </nav>
 
@@ -128,38 +162,50 @@ export const Navbar: React.FC<NavbarProps> = ({
           <nav className="flex flex-col gap-3 font-semibold text-slate-800">
             <a
               href="#tours"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, 'home', 'tours')}
               className="py-2 border-b border-slate-200/50 hover:text-[#ea580c]"
             >
               {t.tours}
             </a>
             <a
               href="#showcase"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, 'home', 'showcase')}
               className="py-2 border-b border-slate-200/50 hover:text-[#ea580c]"
             >
               Luxury Spaces Showcase
             </a>
             <a
               href="#street-view"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, 'home', 'street-view')}
               className="py-2 border-b border-slate-200/50 hover:text-[#ea580c]"
             >
               {t.streetView}
             </a>
             <a
               href="#services"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, 'home', 'services')}
               className="py-2 border-b border-slate-200/50 hover:text-[#ea580c]"
             >
               {t.webDesign} & Local SEO
             </a>
             <a
               href="#punjab-cities"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, 'home', 'punjab-cities')}
               className="py-2 border-b border-slate-200/50 hover:text-[#ea580c]"
             >
               {t.cities} (Chandigarh, Amritsar, Jalandhar, Ludhiana)
+            </a>
+            <a
+              href="#/blog"
+              onClick={(e) => handleNavClick(e, 'blog')}
+              className={`py-2.5 px-3 rounded-xl flex items-center justify-between ${
+                activePage === 'blog'
+                  ? 'bg-[#0f172a] text-white'
+                  : 'bg-[#fcece6]/70 text-[#d94819]'
+              }`}
+            >
+              <span>{t.blog}</span>
+              <span className="text-xs font-bold">New →</span>
             </a>
 
             {/* Direct Contact Links in Mobile Menu */}

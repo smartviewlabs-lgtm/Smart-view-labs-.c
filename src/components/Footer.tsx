@@ -7,9 +7,10 @@ import { Phone, Mail, MessageSquare, MapPin, ShieldCheck } from 'lucide-react';
 interface FooterProps {
   lang: Language;
   onOpenBooking: () => void;
+  onNavigate?: (page: 'home' | 'blog', sectionId?: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ lang, onOpenBooking }) => {
+export const Footer: React.FC<FooterProps> = ({ lang, onOpenBooking, onNavigate }) => {
   return (
     <footer className="bg-[#0c1829] text-white border-t border-slate-800 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,28 +61,73 @@ export const Footer: React.FC<FooterProps> = ({ lang, onOpenBooking }) => {
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <a href="#tours" className="hover:text-white transition-colors">
+                <a
+                  href="#tours"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('home', 'tours');
+                    }
+                  }}
+                  className="hover:text-white transition-colors"
+                >
                   Interactive 360° Tours
                 </a>
               </li>
               <li>
-                <a href="#street-view" className="hover:text-white transition-colors">
+                <a
+                  href="#street-view"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('home', 'street-view');
+                    }
+                  }}
+                  className="hover:text-white transition-colors"
+                >
                   Google Street View
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-white transition-colors">
+                <a
+                  href="#services"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('home', 'services');
+                    }
+                  }}
+                  className="hover:text-white transition-colors"
+                >
                   Website Designing
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-white transition-colors">
-                  Local SEO & Google Ads
+                <a
+                  href="#showcase"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('home', 'showcase');
+                    }
+                  }}
+                  className="hover:text-white transition-colors"
+                >
+                  Hotels & Banquet Showcase
                 </a>
               </li>
               <li>
-                <a href="#showcase" className="hover:text-white transition-colors">
-                  Hotels & Banquet Showcase
+                <a
+                  href="#/blog"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('blog');
+                    }
+                  }}
+                  className="hover:text-amber-300 font-semibold text-slate-300 transition-colors"
+                >
+                  Blog & Image Posts
                 </a>
               </li>
             </ul>

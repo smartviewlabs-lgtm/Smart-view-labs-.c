@@ -26,7 +26,7 @@ export const StreetViewSection: React.FC<StreetViewSectionProps> = ({
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-slate-900 tracking-tight leading-tight">
               {lang === 'hi'
-                ? 'गूगल मैप्स और स्ट्रीट व्यू पर आपका बिजनेस बने #1'
+                ? 'गूगल मैप्स और स्ट्रीट व्यू पर आपका बिजनेस दिखे सबसे आगे'
                 : 'Turn Google Maps Searches into Footfall & Direct Bookings'}
             </h2>
 

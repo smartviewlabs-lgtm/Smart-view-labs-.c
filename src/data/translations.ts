@@ -6,6 +6,7 @@ export interface Translations {
     streetView: string;
     webDesign: string;
     cities: string;
+    blog: string;
     freeDemo: string;
   };
   hero: {
@@ -57,6 +58,7 @@ export const contentData: Record<Language, Translations> = {
       streetView: 'Google Street View',
       webDesign: 'Website Designing',
       cities: 'Punjab Coverage',
+      blog: 'Blog & Posts',
       freeDemo: 'Free Demo',
     },
     hero: {
@@ -106,6 +108,7 @@ export const contentData: Record<Language, Translations> = {
       streetView: 'गूगल स्ट्रीट व्यू',
       webDesign: 'वेबसाइट डिजाइनिंग',
       cities: 'पंजाब कवरेज',
+      blog: 'ब्लॉग व पोस्ट',
       freeDemo: 'मुफ्त डेमो',
     },
     hero: {
@@ -131,7 +134,7 @@ export const contentData: Record<Language, Translations> = {
     },
     services: {
       badge: 'फुल-सर्विस डिजिटल एजेंसी',
-      title: 'लोकल सर्च और 360° तकनीक में पंजाब का नंबर 1 ब्रांड',
+      title: 'लोकल सर्च और 360° तकनीक में अग्रणी डिजिटल एजेंसी',
       subtitle: 'प्रमाणित गूगल स्ट्रीट व्यू, आधुनिक वेबसाइट डिजाइनिंग और मेटा/गूगल ऐड्स से बिजनेस लीड्स कई गुना बढ़ाएं।',
     },
     cities: {
