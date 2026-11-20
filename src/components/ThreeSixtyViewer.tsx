@@ -96,6 +96,7 @@ export const ThreeSixtyViewer: React.FC<ThreeSixtyViewerProps> = ({
 
     // 4. Load equirectangular texture
     const textureLoader = new THREE.TextureLoader();
+    textureLoader.setCrossOrigin('anonymous');
     textureLoader.load(
       space.image,
       (texture) => {

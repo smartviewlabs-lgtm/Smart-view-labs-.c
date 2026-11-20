@@ -1,7 +1,11 @@
-import carShowroomImg from '../assets/images/car_showroom_luxury_360_1794489894599.jpg';
 import hotelSuiteImg from '../assets/images/hotel_suite_luxury_360_1794489894032.jpg';
-import restaurantImg from '../assets/images/restaurant_finedine_360_1794489896391.jpg';
-import banquetHallImg from '../assets/images/banquet_hall_punjab_360_1794489894225.jpg';
+
+const LUXURY_SHOWROOM_IMAGE =
+  'https://raw.githubusercontent.com/smartviewlabs-lgtm/svl.in/main/public/images/carshowroom.png';
+const FINE_DINE_IMAGE =
+  'https://raw.githubusercontent.com/smartviewlabs-lgtm/svl.in/main/public/images/diwali%20shot.png';
+const BANQUET_HALL_IMAGE =
+  'https://raw.githubusercontent.com/smartviewlabs-lgtm/svl.in/main/public/images/diwali%20shot%201.png';
 
 export interface TourSpace {
   id: string;
@@ -39,7 +43,7 @@ export const TOUR_SPACES: TourSpace[] = [
     taglineHi: 'ग्राहकों को घर बैठे अपने शोरूम में घुमाएं, हर कार मॉडल की जांच कराएं और टेस्ट ड्राइव बुक करवाएं।',
     description: 'Ultra-high resolution 360° virtual showroom designed for luxury automobile dealerships and high-end retail studios. Features clickable specification popups, custom paint preview links, and direct WhatsApp sales lead routing.',
     descriptionHi: 'लक्जरी ऑटोमोबाइल डीलरशिप और प्रीमियम रिटेल शोरूम के लिए बनाया गया 360° वर्चुअल वॉकथ्रू। ग्राहक सीधे व्हाट्सएप पर टेस्ट ड्राइव व मूल्य की जानकारी ले सकते हैं।',
-    image: carShowroomImg,
+    image: LUXURY_SHOWROOM_IMAGE,
     features: [
       { en: 'Clickable info hotspots with tech specs & pricing', hi: 'तकनीकी जानकारी और कीमतों के साथ क्लिक करने योग्य हॉटस्पॉट' },
       { en: 'Official Google Street View integration & Maps placement', hi: 'आधिकारिक गूगल स्ट्रीट व्यू और गूगल मैप्स एकीकरण' },
@@ -95,7 +99,7 @@ export const TOUR_SPACES: TourSpace[] = [
     taglineHi: 'कैंडल-लाइट डाइनिंग एंबियंस, कॉकटेल बार और वीआईपी लाउंज को 360° में दिखाएं।',
     description: 'Bespoke virtual walk-through capturing the mood, acoustic warmth, and architectural craftsmanship of fine dining restaurants. Guests can reserve exact private tables and view signature menus inside the tour.',
     descriptionHi: 'फाइन डाइनिंग रेस्टोरेंट और प्रीमियम बार लाउंज के लिए संवादात्मक 360° टूर। ग्राहक अपनी मनपसंद टेबल देखकर सीधे ऑनलाइन रिजर्व कर सकते हैं।',
-    image: restaurantImg,
+    image: FINE_DINE_IMAGE,
     features: [
       { en: 'Click-to-table reservation integration via WhatsApp or Zomato', hi: 'व्हाट्सएप या जोमैटो के माध्यम से टेबल रिजर्वेशन' },
       { en: 'Digital interactive food & cocktail menu hotspots with photos', hi: 'व्यंजनों और कॉकटेल की तस्वीरों के साथ डिजिटल मेनू' },
@@ -123,7 +127,7 @@ export const TOUR_SPACES: TourSpace[] = [
     taglineHi: 'शानदार बैंक्वेट हॉल, भव्य स्टेज और डाइनिंग व्यवस्था को 360° में प्रदर्शित करें।',
     description: 'Designed specifically for Punjab destination weddings and royal banquet resorts. Allows NRI families from Canada, UK, and USA to inspect the 1000+ guest seating, mandap stage, and catering layouts without flying in.',
     descriptionHi: 'पंजाब की भव्य शादियों और पैलेस रिजॉर्ट्स के लिए 360° वर्चुअल टूर। एनआरआई परिवार घर बैठे पूरी स्टेज, मंडप और 1000+ लोगों की बैठक व्यवस्था देख सकते हैं।',
-    image: banquetHallImg,
+    image: BANQUET_HALL_IMAGE,
     features: [
       { en: 'NRI family virtual walkthrough tool with remote sharing link', hi: 'विदेश में बैठे एनआरआई परिवारों के लिए आसान शेयरिंग लिंक' },
       { en: 'Pre-wedding stage, ring ceremony, and sangeet layout switches', hi: 'सगाई, संगीत और मुख्य विवाह की अलग-अलग स्टेज व्यवस्थाएं' },
@@ -199,7 +203,7 @@ export const SHOWCASE_CARDS: ShowcaseCard[] = [
     metrics: '₹45L+ Average Deal Value',
     description: 'Crucial for destination weddings in Punjab. NRI families from UK, Canada, & USA finalize bookings remotely.',
     descriptionHi: 'पंजाब की शादियों के लिए अनिवार्य। कनाडा, यूके और अमेरिका के एनआरआई परिवार दूर बैठकर वेन्यू फाइनल करते हैं।',
-    image: banquetHallImg,
+    image: BANQUET_HALL_IMAGE,
     tourId: 'grand-banquet-hall',
     seoKeywords: ['Banquet hall 360 tour Ludhiana', 'Wedding resort virtual tour Punjab', 'Marriage palace 360 shoot Amritsar'],
   },
@@ -214,7 +218,7 @@ export const SHOWCASE_CARDS: ShowcaseCard[] = [
     metrics: '+185% Table Reservations',
     description: 'Diners can pick their favorite booth, check bar vibes, and inspect private party areas before heading out.',
     descriptionHi: 'ग्राहक आने से पहले अपना पसंदीदा कोना या बूथ चुन सकते हैं और बार का माहौल देख सकते हैं।',
-    image: restaurantImg,
+    image: FINE_DINE_IMAGE,
     tourId: 'fine-dine-restaurant',
     seoKeywords: ['Restaurant 360 tour Chandigarh', 'Lounge 360 view Model Town Jalandhar', 'Bar interior 360 Ludhiana'],
   },
@@ -229,7 +233,7 @@ export const SHOWCASE_CARDS: ShowcaseCard[] = [
     metrics: '3.2x More Inquiries',
     description: 'Let buyers inspect car exteriors, luxury jewelry showcases, and furniture studios with interactive hotspots.',
     descriptionHi: 'खरीदारों को कार, गहने और प्रीमियम फर्नीचर के हर विवरण को हॉटस्पॉट के जरिए करीब से देखने दें।',
-    image: carShowroomImg,
+    image: LUXURY_SHOWROOM_IMAGE,
     tourId: 'luxury-showroom',
     seoKeywords: ['Car showroom 360 tour Punjab', 'Retail store 360 walkthrough Chandigarh', 'Interactive showroom Ludhiana'],
   },
